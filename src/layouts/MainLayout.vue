@@ -2,7 +2,7 @@
   <div>
     <div class="card">
       <Menubar :model="items">
-        <!-- <template #item="{ item, props, hasSubmenu }">
+        <template #item="{ item, props, hasSubmenu }">
           <router-link
             v-if="item.route"
             v-slot="{ href, navigate }"
@@ -14,7 +14,7 @@
               <span class="ml-2">{{ item.label }}</span>
             </a>
           </router-link>
-        </template> -->
+        </template>
       </Menubar>
     </div>
 
