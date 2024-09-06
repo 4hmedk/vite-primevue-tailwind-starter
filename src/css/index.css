@@ -59,7 +59,7 @@
  *  should match;
  * :root.app-dark
 */
-:root.p-dark {
+:root.app-dark {
     --p-primary-color: var(--p-primary-400);
     --p-primary-contrast-color: var(--p-surface-900);
     --p-primary-hover-color: var(--p-primary-300);

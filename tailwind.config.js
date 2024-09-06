@@ -10,5 +10,6 @@ export default {
     extend: {},
   },
   plugins: [require('tailwindcss-primeui')],
+  darkMode: ['selector', '[class*="app-dark"]'] ,
 }
 
