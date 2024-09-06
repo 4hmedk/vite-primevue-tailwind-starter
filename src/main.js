@@ -1,15 +1,11 @@
 import { createApp } from 'vue'
-import './style.css'
 import App from './App.vue'
 import './css/index.css'
-import PrimeVue from 'primevue/config';
-import wind from 'src/presets/wind';
+
 import router from './router'
+import bootApp from 'src/plugins'
 
 const app = createApp(App);
-app.use(PrimeVue, {
-    unstyled: true,
-    pt: wind,
-});
+await bootApp(app)
 app.use(router)
 app.mount('#app')
