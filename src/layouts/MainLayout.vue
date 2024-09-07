@@ -1,41 +1,50 @@
 <template>
-  <div>
-    <div class="card">
-      <Menubar
-        :model="items"
-        :ptOptions="{ mergeProps: true }"
-        :pt="{ rootList: 'font-bold' }"
-      >
-        <template #start>
-          <span class="font-bold text-lg">App Name</span>
-        </template>
-        <template #item="{ item, props, hasSubmenu }">
-          <router-link
-            v-if="item.route"
-            v-slot="{ href, navigate }"
-            :to="{ name: item.route }"
-          >
-            <a :href="href" v-bind="props.action" @click="navigate">
-              <span :class="item.icon" />
-              <span class="ml-2">{{ item.label }}</span>
-            </a>
-          </router-link>
-        </template>
-        <template #end>
-          <div class="flex items-center gap-2">
-            <Avatar image="https://i.pravatar.cc/300" shape="circle" />
-          </div>
-        </template>
-      </Menubar>
-    </div>
+  <div class="card">
+    <Toolbar style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem">
+      <template #start>
+        <LogoComponent />
+        <Tabs value="home">
+          <TabList>
+            <router-link
+              v-for="tab in items"
+              :key="tab.label"
+              :to="{ name: tab.route }"
+            >
+              <Tab v-if="tab.route" :value="tab.route">
+                <div class="h-full w-full flex items-center gap-2 text-inherit">
+                  <i :class="tab.icon" />
+                  <span>{{ tab.label }}</span>
+                </div>
+              </Tab>
+            </router-link>
+          </TabList>
+        </Tabs>
+      </template>
 
-    <RouterView />
+      <template #end>
+        <div class="flex items-center gap-2">
+          <Button label="Share" severity="contrast" size="small" />
+          <Avatar
+            image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png"
+            style="width: 32px; height: 32px"
+          />
+        </div>
+      </template>
+    </Toolbar>
   </div>
+  <RouterView />
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Menubar from "primevue/menubar";
+import Tabs from "primevue/tabs";
+import TabList from "primevue/tablist";
+import Tab from "primevue/tab";
+import Toolbar from "primevue/toolbar";
+import LogoComponent from "src/components/LogoComponent.vue";
+import TabPanels from "primevue/tabpanels";
+import TabPanel from "primevue/tabpanel";
 import Avatar from "primevue/avatar";
 
 const items = ref([
@@ -57,8 +66,4 @@ const items = ref([
 ]);
 </script>
 
-<style scoped>
-.router-link-exact-active {
-  color: var(--p-primary-500);
-}
-</style>
+<style scoped></style>
